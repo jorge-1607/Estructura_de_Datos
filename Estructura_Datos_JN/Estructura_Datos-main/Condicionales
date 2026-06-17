@@ -18,5 +18,37 @@ if (nota >= 7) {
     console.log("Reprobado");
 }
 
+const numeroSecreto = Math.floor(Math.random()*10);
+const numeroJugador = parseInt(prompt("Adivina el numero secreto entre el 1 al 10:"));
 
+console.log(`Este es el numero con el que juegas ${numeroJugador}`);
+
+if (numeroJugador === numeroSecreto){
+    console.log("FELICIDADES, GANASTE!!")
+} else if (numeroJugador < numeroSecreto){
+    console.log("tu numero es menor!!! intenta nuevamente")
+} else {
+    console.log("tu numero es mayor!!! intenta nuevamente")
+}
+
+
+let expr = "mangos"
+
+switch (expr){
+    case "mangos":
+        console.log("los mangos cuestan $1")
+        break;
+
+    case "naraja":
+        console.log("las narajas estan 10x$1")
+        break;
+
+    case "manzana":
+        console.log("las manzanas estan 5x$1")
+    default:
+        console.log(`Lo sentimos con contamos con ${expr}`)
+        break;
+}
+
+console.log("Quieres comprar algo adicional?")
 
