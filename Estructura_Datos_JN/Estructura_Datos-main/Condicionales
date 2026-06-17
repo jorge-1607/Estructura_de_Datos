@@ -1,0 +1,22 @@
+
+let edad = parseInt(prompt("Ingrese su edad:"));
+let nota = parseFloat(prompt("Ingrese su nota:"));
+
+// Evaluar edad
+if (edad < 18) {
+    console.log("La persona es menor de edad.");
+} else if (edad >= 18 && edad < 65) {
+    console.log("La persona es mayor de edad.");
+} else {
+    console.log("La persona es un adulto mayor.");
+}
+
+// Evaluar nota
+if (nota >= 7) {
+    console.log("Aprobado");
+} else {
+    console.log("Reprobado");
+}
+
+
+
