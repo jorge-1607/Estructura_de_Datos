@@ -1,0 +1,13 @@
+let num1 = parseInt(prompt("Ingrese el primer número:"));
+let num2 = parseInt(prompt("Ingrese el segundo número:"));
+
+console.log("Número 1: " + num1);
+console.log("Número 2: " + num2);
+
+console.log("¿num1 es igual a num2? -> " + (num1 == num2));
+console.log("¿num1 es estrictamente igual a num2? -> " + (num1 === num2));
+console.log("¿num1 es diferente de num2? -> " + (num1 != num2));
+console.log("¿num1 es mayor que num2? -> " + (num1 > num2));
+console.log("¿num1 es menor que num2? -> " + (num1 < num2));
+console.log("¿num1 es mayor o igual que num2? -> " + (num1 >= num2));
+console.log("¿num1 es menor o igual que num2? -> " + (num1 <= num2));
