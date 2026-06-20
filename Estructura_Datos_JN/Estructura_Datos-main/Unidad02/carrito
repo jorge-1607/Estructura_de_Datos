@@ -1,0 +1,89 @@
+class carrrito {
+
+    constructor() {
+
+        this.productos = [];
+        this.total = 0;
+
+    }
+
+
+    agregarProducto(nombre, precio) {
+
+        let producto = {
+            nombre: nombre,
+            precio: precio
+        };
+
+
+        this.productos.push(producto);
+
+        this.total += precio;
+
+        this.mostrarCarrito();
+
+    }
+
+
+
+    eliminarProducto(indice) {
+
+
+        this.total -= this.productos[indice].precio;
+
+
+        this.productos.splice(indice, 1);
+
+
+        this.mostrarCarrito();
+
+    }
+
+
+    mostrarCarrito() {
+
+
+        let lista = document.getElementById("lista-carrito");
+
+        lista.innerHTML = "";
+
+
+        this.productos.forEach((producto, indice) => {
+
+
+            let item = document.createElement("li");
+
+
+            item.innerHTML = 
+            producto.nombre +
+            " - $" +
+            producto.precio +
+            " <button onclick='carrito.eliminarProducto("+indice+")'>Eliminar</button>";
+
+
+            lista.appendChild(item);
+
+
+        });
+
+
+
+        document.getElementById("total-compra").innerHTML = this.total;
+
+
+    }
+
+
+
+    vaciarCarrito() {
+
+
+        this.productos = [];
+
+        this.total = 0;
+
+        this.mostrarCarrito();
+
+    }
+
+}
