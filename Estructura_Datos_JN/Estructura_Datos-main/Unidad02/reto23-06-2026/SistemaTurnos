@@ -75,10 +75,10 @@ console.log("\n--- Atendiendo clientes en orden de llegada ---");
 sistema.atenderSiguiente();
 sistema.verSiguiente();     
 sistema.atenderSiguiente(); 
- 
+sistema.atenderSiguiente(); 
 console.log(`\nTotal de personas aún en espera: ${sistema.totalEnEspera()}`);
  
-console.log("\n--- Intentando atender cuando ya no hay turnos ---");
+console.log("\n--- Atender cuando ya no hay turnos ---");
 sistema.atenderSiguiente(); 
 sistema.atenderSiguiente();
  
