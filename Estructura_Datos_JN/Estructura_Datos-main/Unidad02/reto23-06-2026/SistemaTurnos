@@ -1,0 +1,86 @@
+class SistemaTurnos {
+  constructor() {
+    this.cola = [];
+    this.contadorTurno = 1;
+    this.historialAtendidos = [];
+  }
+ 
+  tomarTurno(nombreCliente) {
+    const turno = {
+      numero: this.contadorTurno++,
+      cliente: nombreCliente,
+      horaRegistro: new Date().toLocaleTimeString(),
+    };
+ 
+    this.cola.push(turno);
+    console.log(`🎫 Turno #${turno.numero} asignado a ${turno.cliente}`);
+    return turno;
+  }
+ 
+  atenderSiguiente() {
+    if (this.estaVacia()) {
+      console.log("⚠️  No hay turnos pendientes por atender.");
+      return null;
+    }
+ 
+    const turnoAtendido = this.cola.shift();
+    this.historialAtendidos.push(turnoAtendido);
+ 
+    console.log(
+      ` Atendiendo turno #${turnoAtendido.numero} - ${turnoAtendido.cliente}`
+    );
+    return turnoAtendido;
+  }
+ 
+  verSiguiente() {
+    if (this.estaVacia()) {
+      console.log("No hay turnos en espera.");
+      return null;
+    }
+    const siguiente = this.cola[0];
+    console.log(`👀 El siguiente en ser atendido es: #${siguiente.numero} - ${siguiente.cliente}`);
+    return siguiente;
+  }
+ 
+  estaVacia() {
+    return this.cola.length === 0;
+  }
+ 
+  // Muestra el estado actual de la fila
+  mostrarCola() {
+    if (this.estaVacia()) {
+      console.log("📋 La cola está vacía.");
+      return;
+    }
+    console.log("📋 Turnos en espera:");
+    this.cola.forEach((t) => console.log(`   #${t.numero} - ${t.cliente} (registrado a las ${t.horaRegistro})`));
+  }
+ 
+  totalEnEspera() {
+    return this.cola.length;
+  }
+}
+ 
+const sistema = new SistemaTurnos();
+ 
+sistema.tomarTurno("Axel Lapo");
+sistema.tomarTurno("Joel Tene");
+sistema.tomarTurno("Elian Herrera");
+sistema.tomarTurno("Diego Iniguez");
+sistema.tomarTurno("Anderson Torres");
+
+console.log("\n--- Estado actual de la cola ---");
+sistema.mostrarCola();
+ 
+console.log("\n--- Atendiendo clientes en orden de llegada ---");
+sistema.atenderSiguiente();
+sistema.verSiguiente();     
+sistema.atenderSiguiente(); 
+ 
+console.log(`\nTotal de personas aún en espera: ${sistema.totalEnEspera()}`);
+ 
+console.log("\n--- Intentando atender cuando ya no hay turnos ---");
+sistema.atenderSiguiente(); 
+sistema.atenderSiguiente();
+ 
+module.exports = SistemaTurnos;
