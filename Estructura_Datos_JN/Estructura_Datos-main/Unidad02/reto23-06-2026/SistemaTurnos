@@ -13,13 +13,13 @@ class SistemaTurnos {
     };
  
     this.cola.push(turno);
-    console.log(`🎫 Turno #${turno.numero} asignado a ${turno.cliente}`);
+    console.log(` Turno #${turno.numero} asignado a ${turno.cliente}`);
     return turno;
   }
  
   atenderSiguiente() {
     if (this.estaVacia()) {
-      console.log("⚠️  No hay turnos pendientes por atender.");
+      console.log("  No hay turnos pendientes por atender.");
       return null;
     }
  
@@ -38,21 +38,20 @@ class SistemaTurnos {
       return null;
     }
     const siguiente = this.cola[0];
-    console.log(`👀 El siguiente en ser atendido es: #${siguiente.numero} - ${siguiente.cliente}`);
+    console.log(`El siguiente en ser atendido es: #${siguiente.numero} - ${siguiente.cliente}`);
     return siguiente;
   }
  
   estaVacia() {
     return this.cola.length === 0;
   }
- 
-  // Muestra el estado actual de la fila
+
   mostrarCola() {
     if (this.estaVacia()) {
-      console.log("📋 La cola está vacía.");
+      console.log(" La cola está vacía.");
       return;
     }
-    console.log("📋 Turnos en espera:");
+    console.log(" Turnos en espera:");
     this.cola.forEach((t) => console.log(`   #${t.numero} - ${t.cliente} (registrado a las ${t.horaRegistro})`));
   }
  
