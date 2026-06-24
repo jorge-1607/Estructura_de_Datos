@@ -1,0 +1,47 @@
+// EJERCICIO 4.1: Fibonacci mostrando el árbol
+
+function fibonacciConArbol(n, prefijo = "", esUltimo = true) {
+
+    console.log(
+        prefijo +
+        (prefijo === "" ? "" : (esUltimo ? "└── " : "├── ")) +
+        `fibonacci(${n})`
+    );
+
+    if (n <= 1) {
+        return n;
+    }
+
+    const nuevoPrefijo =
+        prefijo + (prefijo === "" ? "" : (esUltimo ? "    " : "│   "));
+
+    const izquierda = fibonacciConArbol(n - 1, nuevoPrefijo, false);
+    const derecha = fibonacciConArbol(n - 2, nuevoPrefijo, true);
+
+    return izquierda + derecha;
+}
+
+console.log("Resultado Fibonacci:", fibonacciConArbol(4));
+
+// EJERCICIO 4.3
+
+function factorialCola(n, acumulador = 1) {
+
+    if (n < 0) {
+        throw new Error("El factorial no está definido para números negativos.");
+    }
+
+    if (n === 0 || n === 1) {
+        return acumulador;
+    }
+
+    return factorialCola(n - 1, acumulador * n);
+}
+
+// Pruebas
+
+console.assert(factorialCola(5) === 120, "Error en factorialCola(5)");
+console.assert(factorialCola(10) === 3628800, "Error en factorialCola(10)");
+console.assert(factorialCola(0) === 1, "Error en factorialCola(0)");
+
+console.log("✔ Ejercicio 4.3 superado.");

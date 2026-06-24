@@ -1,0 +1,49 @@
+class NodoArbol {
+    constructor(valor) {
+        this.valor = valor;
+        this.izquierdo = null;
+        this.derecho = null;
+    }
+}
+
+function recorridoInorden(nodo, resultado = []) {
+    if (nodo === null) return resultado;
+
+    recorridoInorden(nodo.izquierdo, resultado);
+    resultado.push(nodo.valor);
+    recorridoInorden(nodo.derecho, resultado);
+
+    return resultado;
+}
+
+function recorridoPreorden(nodo, resultado = []) {
+    if (nodo === null) return resultado;
+
+    resultado.push(nodo.valor);
+    recorridoPreorden(nodo.izquierdo, resultado);
+    recorridoPreorden(nodo.derecho, resultado);
+
+    return resultado;
+}
+
+function recorridoPostorden(nodo, resultado = []) {
+    if (nodo === null) return resultado;
+
+    recorridoPostorden(nodo.izquierdo, resultado);
+    recorridoPostorden(nodo.derecho, resultado);
+    resultado.push(nodo.valor);
+
+    return resultado;
+}
+
+const raiz = new NodoArbol(1);
+
+raiz.izquierdo = new NodoArbol(2);
+raiz.derecho = new NodoArbol(3);
+
+raiz.izquierdo.izquierdo = new NodoArbol(4);
+raiz.izquierdo.derecho = new NodoArbol(5);
+
+console.log("Inorden:", recorridoInorden(raiz));
+console.log("Preorden:", recorridoPreorden(raiz));
+console.log("Postorden:", recorridoPostorden(raiz));
