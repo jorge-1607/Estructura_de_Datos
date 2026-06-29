@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+Gestión de Mantenimiento
+</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<h1>
+Sistema de Gestión de Solicitudes de Mantenimiento
+</h1>
+
+
+<div class="contenedor">
+
+
+<h2>Registrar solicitud</h2>
+
+
+<input id="empleado" placeholder="Nombre del empleado">
+
+<input id="area" placeholder="Área afectada">
+
+<input id="tipo" placeholder="Tipo de mantenimiento">
+
+<input id="descripcion" placeholder="Descripción del problema">
+
+
+<button onclick="registrarSolicitud()">
+Registrar solicitud
+</button>
+
+
+
+<h2>Acciones</h2>
+
+
+<button onclick="atenderSolicitud()">
+Atender siguiente solicitud
+</button>
+
+
+<button onclick="cancelarSolicitud()">
+Cancelar solicitud
+</button>
+
+
+
+<h2>Pruebas de rendimiento</h2>
+
+
+<button onclick="simular(50)">
+50 registros
+</button>
+
+
+<button onclick="simular(75)">
+75 registros
+</button>
+
+
+<button onclick="simular(1000)">
+1000 registros
+</button>
+
+
+<button onclick="simular(50000)">
+50000 registros
+</button>
+
+
+<button onclick="simular(200000)">
+200000 registros
+</button>
+
+
+<button onclick="simular(1000000)">
+1000000 registros
+</button>
+
+
+
+<h2>Recursividad</h2>
+
+
+<button onclick="generarRecursivo()">
+Generar solicitudes recursivas
+</button>
+
+
+
+<h2>
+Solicitudes pendientes
+</h2>
+
+
+<div id="lista"></div>
+
+
+<h3 id="resultado"></h3>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
