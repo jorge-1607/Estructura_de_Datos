@@ -54,7 +54,6 @@ print('\"abc\" + 200', "abc" + 200);
 print('\"abc\" + 200n', "abc" + 200n);
 print('\"abc\" + true', "abc" + true);
 
-// Mostrar mezcla peligrosa BigInt + Number con manejo
 try {
   // Esto lanza TypeError en tiempo de ejecución
   // (descomenta para ver el error sin catch)
@@ -64,14 +63,12 @@ try {
   console.log('Error: mezclar BigInt y Number sin conversión:', e.message);
 }
 
-// Soluciones: convertir explícitamente
 print('Number(100n) + 200', Number(100n) + 200);
 print('100n + BigInt(200)', 100n + BigInt(200));
 
 const result = 42 + +"1"; // el operador + unario convierte "1" a número
 print('42 + +"1"', result);
 
-// Helper seguro para sumar BigInt/Number con conversión explícita
 function safeAdd(a, b) {
   if (typeof a === 'bigint' && typeof b === 'number') return a + BigInt(b);
   if (typeof a === 'number' && typeof b === 'bigint') return BigInt(a) + b;
