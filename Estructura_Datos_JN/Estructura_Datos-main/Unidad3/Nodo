@@ -1,0 +1,86 @@
+class NodoTrie {
+  constructor() {
+    this.hijos = new Map();
+    this.esFinDePalabra = false;
+  }
+}
+
+class MotorAutocompletado {
+  constructor() {
+    this.raiz = new NodoTrie();
+  }
+
+  insertarTermino(termino) {
+    let actual = this.raiz;
+    const palabra = termino.toLowerCase();
+
+    for (const char of palabra) {
+      if (!actual.hijos.has(char)) {
+        actual.hijos.set(char, new NodoTrie());
+      }
+      actual = actual.hijos.get(char);
+    }
+    actual.esFinDePalabra = true;
+  }
+
+  buscarNodoPrefijo(prefijo) {
+    let actual = this.raiz;
+    const p = prefijo.toLowerCase();
+
+    for (const char of p) {
+      if (!actual.hijos.has(char)) return null;
+      actual = actual.hijos.get(char);
+    }
+    return actual;
+  }
+
+  obtenerSugerencias(prefijo) {
+    const resultados = [];
+    const nodoInicial = this.buscarNodoPrefijo(prefijo);
+    if (nodoInicial) {
+      this.dfsExtraerPalabras(nodoInicial, prefijo.toLowerCase(), resultados);
+    }
+    return resultados;
+  }
+
+  dfsExtraerPalabras(nodo, palabraActual, resultados) {
+    if (nodo.esFinDePalabra) resultados.push(palabraActual);
+
+    for (const [char, hijo] of nodo.hijos) {
+      this.dfsExtraerPalabras(hijo, palabraActual + char, resultados);
+    }
+  }
+}
+
+module.exports = { NodoTrie, MotorAutocompletado };
+
+// ============================================================
+// MAIN: pruebas del motor de autocompletado
+// ============================================================
+if (require.main === module) {
+  const motor = new MotorAutocompletado();
+
+  const terminos = [
+    'paquete', 'paqueteria', 'pago', 'pagina', 'pais',
+    'envio', 'entrega', 'entregado', 'entregar', 'guia'
+  ];
+
+  console.log('=== Insertando términos en el Trie ===');
+  terminos.forEach(t => {
+    motor.insertarTermino(t);
+    console.log(`insertarTermino("${t}") -> OK`);
+  });
+
+  console.log('\n=== Pruebas de autocompletado ===');
+  const prefijos = ['pa', 'en', 'gu', 'zzz'];
+
+  prefijos.forEach(p => {
+    const sugerencias = motor.obtenerSugerencias(p);
+    console.log(`\nobtenerSugerencias("${p}"):`);
+    console.log(sugerencias.length ? sugerencias : '  (sin resultados)');
+  });
+
+  console.log('\n=== Prueba de buscarNodoPrefijo ===');
+  console.log('buscarNodoPrefijo("pa") existe:', motor.buscarNodoPrefijo('pa') !== null);
+  console.log('buscarNodoPrefijo("xy") existe:', motor.buscarNodoPrefijo('xy') !== null);
+}
